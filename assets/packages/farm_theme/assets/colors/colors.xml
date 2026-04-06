@@ -1,0 +1,175 @@
+<resources>
+
+    <!-- Light (Slate - Cool & Professional) -->
+    <color name="light100">#FFFFFFFF</color>
+    <color name="light150">#FFF8FAFC</color>
+    <color name="light200">#FFF1F5F9</color>
+    <color name="light250">#FFE2E8F0</color>
+    <color name="light300">#FFCBD5E1</color>
+    <color name="light350">#FF94A3B8</color>
+    <color name="light400">#FF64748B</color>
+    <color name="light450">#FF475569</color>
+    <color name="light500">#FF334155</color>
+    <color name="light550">#FF1E293B</color>
+    <color name="light600">#FF0F172A</color>
+    <color name="light650">#FF0B1221</color>
+    <color name="light700">#FF070B15</color>
+    <color name="light750">#FF05080F</color>
+    <color name="light800">#FF030509</color>
+    <color name="light850">#FF010204</color>
+    <color name="light900">#FF000000</color>
+
+    <!-- Light Opacity -->
+    <color name="whiteOpacity05">#0DFFFFFF</color>
+    <color name="whiteOpacity10">#1AFFFFFF</color>
+    <color name="whiteOpacity20">#33FFFFFF</color>
+    <color name="whiteOpacity30">#4DFFFFFF</color>
+    <color name="whiteOpacity40">#66FFFFFF</color>
+    <color name="whiteOpacity50">#80FFFFFF</color>
+    <color name="whiteOpacity60">#99FFFFFF</color>
+    <color name="whiteOpacity70">#B3FFFFFF</color>
+    <color name="whiteOpacity80">#CCFFFFFF</color>
+    <color name="whiteOpacity90">#E6FFFFFF</color>
+
+    <!-- Dark (Soft Graphite - Matte & Comfortable) -->
+    <color name="dark100">#FFFFFFFF</color>
+    <color name="dark150">#FFF3F4F6</color>
+    <color name="dark200">#FFE5E7EB</color>
+    <color name="dark250">#FFD1D5DB</color>
+    <color name="dark300">#FF9CA3AF</color>
+    <color name="dark350">#FF6B7280</color>
+    <color name="dark400">#FF4B5563</color>
+    <color name="dark450">#FF374151</color>
+    <color name="dark500">#FF2A3038</color>
+    <color name="dark550">#FF242930</color>
+    <color name="dark600">#FF1F2329</color>
+    <color name="dark650">#FF1A1E23</color>
+    <color name="dark700">#FF161A1E</color>
+    <color name="dark750">#FF131619</color>
+    <color name="dark800">#FF101215</color>
+    <color name="dark850">#FF0D0F11</color>
+    <color name="dark900">#FF0A0C0E</color>
+
+
+    <!-- Dark Opacity -->
+    <color name="blackOpacity05">#0D000000</color>
+    <color name="blackOpacity10">#1A000000</color>
+    <color name="blackOpacity20">#33000000</color>
+    <color name="blackOpacity30">#4D000000</color>
+    <color name="blackOpacity40">#66000000</color>
+    <color name="blackOpacity50">#80000000</color>
+    <color name="blackOpacity60">#99000000</color>
+    <color name="blackOpacity70">#B3000000</color>
+    <color name="blackOpacity80">#CC000000</color>
+    <color name="blackOpacity90">#E6000000</color>
+
+    <!-- Base Palette -->
+    <color name="red">#FFEF5657</color>
+    <color name="orange">#FFFF9F40</color>
+    <color name="yellow">#FFFFD24C</color>
+    <color name="green">#FF0B5E53</color>
+    <color name="blue">#FF3B82F6</color>
+    <color name="indigo">#FF5744AF</color>
+    <color name="purple">#FFFF60AE</color>
+
+    <!-- Game Set -->
+    <color name="gameRed">#FFA80C0C</color>
+    <color name="gameLightRed">#FFE94B4C</color>
+    <color name="gameYellow">#FFF9C354</color>
+    <color name="gameLightGreen">#FFADBD1A</color>
+    <color name="gameGreen">#FF0B5E53</color>
+    <color name="gameBlueGreen">#FF4B98A3</color>
+    <color name="gameBlue">#FF016DC4</color>
+    <color name="gamePurple">#FF5744AF</color>
+    <color name="gamePink">#FFFF60AE</color>
+    <color name="gameGray">#FF888888</color>
+
+    <!-- Pastel Set -->
+    <color name="pastelPink">#FFFFC1CC</color>
+    <color name="pastelOrange">#FFFFDAB9</color>
+    <color name="pastelYellow">#FFFFF6A3</color>
+    <color name="pastelGreen">#FFC8E6C9</color>
+    <color name="pastelBlue">#FFBBDEFB</color>
+    <color name="pastelIndigo">#FFC5CAE9</color>
+    <color name="pastelPurple">#FFE1BEE7</color>
+
+    <!-- Retro Set -->
+    <color name="retroSaddleBrown">#FF8B4513</color>
+    <color name="retroChocolate">#FFD2691E</color>
+    <color name="retroPeru">#FFCD853F</color>
+    <color name="retroGoldenRod">#FFDAA520</color>
+    <color name="retroDarkOliveGreen">#FF556B2F</color>
+    <color name="retroDarkSeaGreen">#FF8FBC8F</color>
+    <color name="retroSteelBlue">#FF4682B4</color>
+
+    <!-- Monochrome Set -->
+    <color name="monoBlack">#FF000000</color>
+    <color name="monoGrey800">#FF424242</color>
+    <color name="monoGrey600">#FF757575</color>
+    <color name="monoGrey">#FF9E9E9E</color>
+    <color name="monoGrey400">#FFBDBDBD</color>
+    <color name="monoGrey200">#FFEEEEEE</color>
+
+    <!-- Nature Set -->
+    <color name="natureGreen900">#FF1B5E20</color>
+    <color name="natureGreen700">#FF388E3C</color>
+    <color name="natureLightGreen700">#FF689F38</color>
+    <color name="natureLime800">#FF9E9D24</color>
+    <color name="natureBrown600">#FF6D4C41</color>
+    <color name="natureBrown400">#FF8D6E63</color>
+
+    <!-- Ocean Set -->
+    <color name="oceanIndigo900">#FF1A237E</color>
+    <color name="oceanBlue900">#FF0D47A1</color>
+    <color name="oceanCyan800">#FF00838F</color>
+    <color name="oceanTeal700">#FF00796B</color>
+    <color name="oceanLightBlue600">#FF039BE5</color>
+    <color name="oceanCyan400">#FF26C6DA</color>
+
+    <!-- Sunset Set -->
+    <color name="sunsetDeepOrange900">#FFBF360C</color>
+    <color name="sunsetRed700">#FFD32F2F</color>
+    <color name="sunsetPink600">#FFD81B60</color>
+    <color name="sunsetOrange800">#FFEF6C00</color>
+    <color name="sunsetAmber700">#FFFFA000</color>
+
+    <!-- Vivid Set -->
+    <color name="vividRedAccent">#FFFF5252</color>
+    <color name="vividOrangeAccent">#FFFFAB40</color>
+    <color name="vividYellowAccent">#FFFFFF00</color>
+    <color name="vividGreenAccent">#FF69F0AE</color>
+    <color name="vividBlueAccent">#FF448AFF</color>
+    <color name="vividIndigoAccent">#FF536DFE</color>
+    <color name="vividPurpleAccent">#FFE040FB</color>
+
+    <!-- Neon Set -->
+    <color name="neonPinkAccent400">#FFF50057</color>
+    <color name="neonPurpleAccent400">#FFD500F9</color>
+    <color name="neonCyanAccent400">#FF00E5FF</color>
+    <color name="neonLimeAccent400">#FFC6FF00</color>
+    <color name="neonGreenAccent400">#FF00E676</color>
+
+    <!-- Dark Set -->
+    <color name="darkRed900">#FFB71C1C</color>
+    <color name="darkPurple900">#FF4A148C</color>
+    <color name="darkIndigo900">#FF1A237E</color> <!-- Reusing oceanIndigo900 value but keeping semantics separate -->
+    <color name="darkBlueGrey900">#FF263238</color>
+    <color name="darkBrown900">#FF3E2723</color>
+    <color name="darkGrey850">#FF303030</color>
+
+    <!-- Luxury Set -->
+    <color name="luxuryAmber900">#FFFF6F00</color>
+    <color name="luxuryPurple800">#FF6A1B9A</color>
+    <color name="luxuryTeal900">#FF004D40</color>
+    <color name="luxuryMidnightBlue">#FF2C3E50</color>
+    <color name="luxuryMetallicGold">#FFD4AF37</color>
+    <color name="luxurySilver">#FFC0C0C0</color>
+
+    <!-- Sweet Set -->
+    <color name="sweetPink200">#FFF48FB1</color>
+    <color name="sweetPurple200">#FFCE93D8</color>
+    <color name="sweetDeepPurple100">#FFD1C4E9</color>
+    <color name="sweetIndigo100">#FFC5CAE9</color>
+    <color name="sweetAmber100">#FFFFECB3</color>
+
+</resources>

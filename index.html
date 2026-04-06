@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web apps in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/farm-web/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Farm 지원 페이지">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Farm">
+  <meta property="og:title" content="Farm">
+  <meta property="og:description" content="Farm 지원 페이지">
+  <meta property="og:image" content="icons/Icon-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Farm">
+  <meta property="twitter:description" content="Farm 지원 페이지">
+  <meta property="twitter:image" content="icons/Icon-512.png">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Farm">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Farm</title>
+  <link rel="manifest" href="manifest.json">
+  <script>
+    (() => {
+      const dedupeKeys = new Set(['theme', 'header', 'locale', 'service']);
+      const initialFragmentString = location.hash.startsWith('#') ? location.hash.substring(1) : '';
+      const initialHashQueryStartIndex = initialFragmentString.indexOf('?');
+      const initialHashPath = initialHashQueryStartIndex >= 0
+        ? initialFragmentString.substring(0, initialHashQueryStartIndex)
+        : initialFragmentString;
+      const initialFragmentQueryString = initialHashQueryStartIndex >= 0
+        ? initialFragmentString.substring(initialHashQueryStartIndex + 1)
+        : '';
+      const initialFragmentQueryParams = new URLSearchParams(initialFragmentQueryString);
+
+      if (initialHashPath) {
+        const queryParams = new URLSearchParams(location.search);
+        let shouldReplace = false;
+
+        for (const key of dedupeKeys) {
+          const hashValue = initialFragmentQueryParams.get(key);
+          if (hashValue != null && queryParams.get(key) === hashValue) {
+            queryParams.delete(key);
+            shouldReplace = true;
+          }
+        }
+
+        if (shouldReplace) {
+          const nextUrl = new URL(location.href);
+          const nextSearch = queryParams.toString();
+          nextUrl.search = nextSearch ? `?${nextSearch}` : '';
+          nextUrl.hash = `#${initialHashPath.startsWith('/') ? initialHashPath : `/${initialHashPath}`}${initialFragmentQueryString ? `?${initialFragmentQueryString}` : ''}`;
+
+          if (nextUrl.href !== location.href) {
+            location.replace(nextUrl.href);
+            return;
+          }
+        }
+      }
+
+      const queryParams = new URLSearchParams(location.search);
+
+      const decodeSafe = (value) => {
+        try {
+          return decodeURIComponent(value);
+        } catch {
+          return value;
+        }
+      };
+
+      const normalizePath = (rawPath) => rawPath
+          .replace(/^\/+/, '')
+          .replace(/\/+$/, '')
+          .toLowerCase()
+          .split('/')
+          .filter((segment) => segment.length > 0);
+
+        const resolveService = (segments) => {
+          const safeSegments = segments.filter((segment) => segment.length > 0);
+          const serviceBySlug = (slug) => {
+            switch (slug) {
+              case 'sprout':
+                return 'SPROUT';
+              case 'harvest':
+                return 'HARVEST';
+              default:
+                return '';
+            }
+        };
+
+        if (safeSegments.length === 1) {
+          return serviceBySlug(safeSegments[0]);
+        }
+        if (safeSegments.length === 2 && safeSegments[0] === 'detail') {
+          return serviceBySlug(safeSegments[1]);
+        }
+        if (safeSegments.length === 2 && safeSegments[0] === 'store') {
+          return serviceBySlug(safeSegments[1]);
+        }
+        if (safeSegments.length >= 3 && safeSegments[0] === 'policy') {
+          return serviceBySlug(safeSegments[2]);
+        }
+        return '';
+      };
+
+      const pathSegments = normalizePath(decodeSafe(location.pathname));
+      const routeSegments = [...pathSegments];
+      while (routeSegments.length > 0 && (routeSegments[0] === 'farm-web' || routeSegments[0] === 'support')) {
+        routeSegments.shift();
+      }
+
+      const queryPath = queryParams.get('path') ?? '';
+      const queryPathSegments = queryPath ? normalizePath(decodeSafe(queryPath)) : [];
+
+      const fragmentString = location.hash.startsWith('#') ? location.hash.substring(1) : '';
+      const hashQueryStartIndex = fragmentString.indexOf('?');
+      const hashPath = hashQueryStartIndex >= 0
+        ? fragmentString.substring(0, hashQueryStartIndex)
+        : fragmentString;
+      const fragmentQueryString = hashQueryStartIndex >= 0
+        ? fragmentString.substring(hashQueryStartIndex + 1)
+        : '';
+      const fragmentQueryParams = new URLSearchParams(decodeSafe(fragmentQueryString));
+      const hashSegments = normalizePath(decodeSafe(hashPath));
+
+      const pathService = resolveService(
+        queryPathSegments.length > 0 ? queryPathSegments : routeSegments,
+      );
+      const fragmentService = resolveService(hashSegments);
+
+    const locale = (
+      fragmentQueryParams.get('locale') ||
+      queryParams.get('locale') ||
+      'ko'
+    ).toLowerCase();
+    const isEnglish = locale === 'en';
+    const service = (
+      (
+        fragmentQueryParams.get('service')
+        || queryParams.get('service')
+        || pathService
+        || fragmentService
+      )
+    ).toUpperCase();
+
+      const serviceMeta = {
+        DEFAULT: {
+          koTitle: 'Farm',
+          enTitle: 'Farm',
+          koDescription: 'Farm 지원 페이지',
+          enDescription: 'Farm support',
+          image: 'icons/Icon-512.png',
+          icon: 'favicon.png',
+          appleIcon: 'icons/Icon-192.png',
+        },
+        HARVEST: {
+          koTitle: 'Bowlog',
+          enTitle: 'Bowlog',
+          koDescription: '일정과 할 일을 한눈에 관리하세요.',
+          enDescription: 'Track your schedule and tasks at a glance.',
+          image: 'icons/harvest/share-image.png',
+          icon: 'icons/harvest/favicon.png',
+          appleIcon: 'icons/harvest/favicon.png',
+        },
+        SPROUT: {
+          koTitle: 'Todlog',
+          enTitle: 'Todlog',
+          koDescription: '할 일을 한눈에 관리하는 투두 앱.',
+          enDescription: 'Manage your todos at a glance.',
+          image: 'icons/sprout/share-image.png',
+          icon: 'icons/sprout/favicon.png',
+          appleIcon: 'icons/sprout/favicon.png',
+        },
+      };
+
+      const baseHref = document.querySelector('base')?.getAttribute('href') || '/';
+      const absoluteImageUrl = (path) => new URL(path, `${location.origin}${baseHref}`).toString();
+      const setMeta = (type, key, value) => {
+        const selector = type === 'name'
+            ? `meta[name="${key}"]`
+            : `meta[property="${key}"]`;
+        let tag = document.head.querySelector(selector);
+        if (!tag) {
+          tag = document.createElement('meta');
+          if (type === 'name') {
+            tag.setAttribute('name', key);
+          } else {
+            tag.setAttribute('property', key);
+          }
+          document.head.appendChild(tag);
+        }
+        tag.setAttribute('content', value);
+      };
+      const setLink = (rel, value, attributes = {}) => {
+        let tag = document.head.querySelector(`link[rel="${rel}"]`);
+        if (!tag) {
+          tag = document.createElement('link');
+          tag.setAttribute('rel', rel);
+          document.head.appendChild(tag);
+        }
+        for (const [key, attrValue] of Object.entries(attributes)) {
+          tag.setAttribute(key, attrValue);
+        }
+        tag.setAttribute('href', value);
+      };
+
+      const profile = serviceMeta[service];
+      const resolvedProfile = profile ?? serviceMeta.DEFAULT;
+      const resolvedImage = absoluteImageUrl(
+        resolvedProfile.image,
+      );
+      const resolvedIcon = absoluteImageUrl(
+        resolvedProfile.icon,
+      );
+      const resolvedAppleIcon = absoluteImageUrl(
+        resolvedProfile.appleIcon ?? resolvedProfile.icon,
+      );
+
+      const title = isEnglish
+          ? resolvedProfile.enTitle
+          : resolvedProfile.koTitle;
+      const description = isEnglish
+          ? resolvedProfile.enDescription
+          : resolvedProfile.koDescription;
+
+      const setTextContent = (selector, value) => {
+        const node = document.head.querySelector(selector);
+        if (node) {
+          node.textContent = value;
+        }
+      };
+
+      setMeta('property', 'og:title', title);
+      setMeta('property', 'og:description', description);
+      setMeta('property', 'og:site_name', title);
+      setMeta('name', 'description', description);
+      setMeta('name', 'twitter:title', title);
+      setMeta('name', 'twitter:description', description);
+      setMeta('property', 'og:image', resolvedImage);
+      setMeta('name', 'twitter:image', resolvedImage);
+      setMeta('name', 'twitter:card', 'summary_large_image');
+      setTextContent('title', title);
+      setLink('icon', resolvedIcon, { type: 'image/png' });
+      setLink('shortcut icon', resolvedIcon, { type: 'image/png' });
+      setLink('apple-touch-icon', resolvedAppleIcon);
+      setMeta('name', 'apple-mobile-web-app-title', title);
+    })();
+  </script>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

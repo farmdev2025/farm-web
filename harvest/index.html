@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="/farm-web/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bowlog</title>
+  <meta name="description" content="일정과 할 일을 한눈에 관리하세요.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bowlog">
+  <meta property="og:title" content="Bowlog">
+  <meta property="og:description" content="일정과 할 일을 한눈에 관리하세요.">
+  <meta property="og:image" content="https://farmdev2025.github.io/farm-web/icons/harvest/share-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bowlog">
+  <meta name="twitter:description" content="일정과 할 일을 한눈에 관리하세요.">
+  <meta name="twitter:image" content="https://farmdev2025.github.io/farm-web/icons/harvest/share-image.png">
+  <link rel="icon" type="image/png" href="/farm-web/icons/harvest/favicon.png" />
+  <link rel="shortcut icon" href="/farm-web/icons/harvest/favicon.png" />
+  <link rel="apple-touch-icon" href="/farm-web/icons/harvest/favicon.png" />
+  <script>
+    (() => {
+      if (
+        !location.pathname.startsWith('/farm-web/harvest') &&
+        !location.pathname.startsWith('/harvest')
+      ) {
+        return;
+      }
+
+      const searchParams = new URLSearchParams(location.search);
+      const locale = (searchParams.get('locale') || 'ko').toLowerCase() === 'en' ? 'en' : 'ko';
+
+      const rawHash = location.hash.startsWith('#')
+          ? location.hash.substring(1)
+          : '';
+      const hashQueryStartIndex = rawHash.indexOf('?');
+      const hashPath = hashQueryStartIndex >= 0
+          ? rawHash.substring(0, hashQueryStartIndex)
+          : rawHash;
+      const hashQueryString = hashQueryStartIndex >= 0
+          ? rawHash.substring(hashQueryStartIndex + 1)
+          : '';
+      const normalizedPath = hashPath
+          ? (hashPath.startsWith('/') ? hashPath : `/${hashPath}`)
+          : '';
+
+      let shouldReplace = false;
+      if (searchParams.get('locale')?.toLowerCase() !== locale) {
+        searchParams.set('locale', locale);
+        shouldReplace = true;
+      }
+
+      const service = searchParams.get('service')?.toUpperCase() ?? '';
+      if (service == 'HARVEST') {
+        searchParams.delete('service');
+        shouldReplace = true;
+      }
+
+      if (rawHash && rawHash !== `${normalizedPath}${hashQueryString ? `?${hashQueryString}` : ''}`) {
+        shouldReplace = true;
+      }
+
+      if (shouldReplace) {
+        const nextUrl = new URL(location.href);
+        const nextSearch = searchParams.toString();
+        nextUrl.search = nextSearch ? `?${nextSearch}` : '';
+        nextUrl.hash = normalizedPath
+            ? `#${normalizedPath}${hashQueryString ? `?${hashQueryString}` : ''}`
+            : '';
+        location.replace(nextUrl.href);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+  <noscript>JavaScript가 비활성화되어 앱 실행이 제한됩니다.</noscript>
+</body>
+</html>
